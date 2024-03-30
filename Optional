@@ -1,0 +1,4 @@
+ Optional[str]:
+ 这说明了函数的返回类型。Optional[str] 表示返回值可以是字符串类型，也可以是 None。
+ Optional 是一个泛型类型，它是 typing 模块中的一个工具，用来表示可能为 None 的类型。
+在这里，它表示函数可以返回一个字符串，也可以返回 None。

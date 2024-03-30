@@ -1,0 +1,6 @@
+ChatCompletionMessage(content='Hello, this is a test.', role='assistant', function_call=None, tool_calls=None)
+
+content:这是消息的内容，例如在对话完成中可能是生成的文本消息，表示对话的输出。在这个例子中，内容是"Hello,this is a test."，表示对话的输出文本。\
+role:这表示消息的角色，可能是'assistant'（助手、机器学习模型）或者'user'（用户）。在这个例子中，角色是'assistant'，表示这条消息是由助手生成的。
+function_call:这是一个可选参数，表示生成这条消息时调用的函数。它可能包含了生成消息所依赖的具体函数或算法的信息。
+tool_calls:也是一个可选参数，表示生成这条消息所调用的工具或服务。它可能包含了生成消息所依赖的具体工具或服务的信息。
