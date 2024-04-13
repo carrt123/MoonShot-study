@@ -1,0 +1,36 @@
+
+1. `$(document).ready(function() { ... });`
+   这是一个jQuery函数，用于确保在文档加载完成后执行括号内的函数。这是JavaScript中常用的一种方法，以确保在DOM元素可用之前不会尝试操作它们。
+
+2. `$('#ask-form').submit(function(event) { ... });`
+   这行代码选择ID为`ask-form`的表单元素，并为其绑定一个事件处理器，当表单被提交时触发。这里的`submit`是一个事件，当表单数据被提交时触发。
+
+3. `event.preventDefault();`
+   这行代码阻止了表单的默认提交行为，即页面刷新。这是通过调用`preventDefault`方法实现的，它是一个标准DOM事件对象的一部分。
+
+4. `var userInput = $('#user-input').val();`
+   这行代码获取ID为`user-input`的输入框的值，并将其存储在变量`userInput`中。
+
+5. `$.ajax({ ... });`
+   这行代码发起一个AJAX请求，它允许在不重新加载整个页面的情况下与服务器交换数据并更新部分网页内容。AJAX请求的目标URL是`/ask`，请求类型是`POST`，并且发送了名为`user_input`的数据，其值为`userInput`变量的值。
+
+6. `success: function(data) { ... }`
+   这是一个回调函数，当AJAX请求成功完成时执行。它接收一个参数`data`，这是服务器返回的JSON对象。
+
+7. `$('#user-input').val('');`
+   这行代码清空了输入框的内容，为用户输入新的问题做准备。
+
+8. `var question = '<div class="message user"><strong>User:</strong> ' + userInput + '</div>';`
+   这行代码创建了一个包含用户输入的HTML字符串，用于在页面上显示用户的问题。
+
+9. `$('#response-container').append(question);`
+   这行代码将用户问题的HTML字符串追加到ID为`response-container`的元素中，以便在页面上显示。
+
+10. `var message = '<div class="message ai"><strong>AI:</strong> ' + data.ai_response + '</div>';`
+    这行代码创建了一个包含AI回答的HTML字符串。
+
+11. `$('#response-container').append(message);`
+    这行代码将AI回答的HTML字符串追加到页面上的对话容器中，以便显示AI的回答。
+
+12. `error: function(request, status, error) { ... }`
+    这是一个回调函数，当AJAX请求失败时执行。它显示一个警告框，提示用户无法获取AI的回答，并建议检查网络连接或稍后重试。
