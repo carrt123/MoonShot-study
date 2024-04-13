@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moonshot AI</title>
+    <!-- 引入Bootstrap CSS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="icon" href="{{ url_for('static',  filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap.4.6.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/init.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- 对话卡片 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center">Moonshot AI 对话小程序</h4>
+                        <p class="text-center">请问有什么可以帮助您的？</p>
+                    </div>
+                    <div class="card-body">
+                        <!-- 消息列表 -->
+                        <div class="message-list" id="ask-container">
+                            <!-- 消息将通过JavaScript动态插入 -->
+                        </div>
+                        <div class="message-list" id="response-container">
+                            <!-- 消息将通过JavaScript动态插入 -->
+                        </div>
+
+                    </div>
+                    <!-- 输入区域 -->
+                    <div class="card-footer">
+                        <form id="ask-form">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="user-input" placeholder="输入您的问题...">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">发送</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入jQuery和Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ url_for('static', filename='bootstrap/bootstrap.4.6.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#ask-form').submit(function(event) {
+                event.preventDefault();
+                var userInput = $('#user-input').val();
+
+                $.ajax({
+                    url: '/ask',
+                    type: 'POST',
+                    data: { 'user_input': userInput },
+
+
+                    success: function(data) {
+                        // 清空之前的输入
+                        $('#user-input').val('');
+
+                        // 构建用户问题的消息HTML并追加到对话容器
+                        var question = '<div class="message user"><strong>User:</strong> ' + userInput + '</div>';
+                        $('#response-container').append(question);
+
+                        // 构建AI回答的消息HTML并追加到对话容器
+                        var message = '<div class="message ai"><strong>AI:</strong> ' + data.ai_response + '</div>';
+                        $('#response-container').append(message);
+                    },
+                    error: function(request, status, error) {
+                        alert("无法获取AI回答，请检查网络连接或稍后重试。");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<!--                    success: function(data) {-->
+<!--                        var question = '<div class="question ai"><strong>User:</strong>'</div>-->
+<!--                        $('#ask-container').append(userInput);-->
+
+<!--                        var message = '<div class="message ai"><strong>AI:</strong> ' + data.ai_response + '</div>';-->
+<!--                        $('#response-container').append(message);-->
+<!--                        $('#user-input').val('');-->
+<!--                    },-->

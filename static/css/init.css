@@ -1,0 +1,49 @@
+body{
+    background-color: #f3f3f3;
+}
+
+/* 自定义CSS样式 */
+.message-list {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.message {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.message.user {
+    background-color: #e8f0fe;
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+    color: #007bff;
+}
+
+.message.ai {
+    background-color: #f8f9fa;
+    border-left: 5px solid #28a745;
+    padding-left: 15px;
+    color: #28a745;
+}
+
+/* 其他样式 */
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: none;
+}
+
+.input-group-append {
+    margin-left: -1px; /* 移除输入框和按钮之间的边框间隙 */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}

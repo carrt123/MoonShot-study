@@ -1,0 +1,31 @@
+.import sys：导入 Python 标准库中的 sys 模块，该模块提供了解释器用于操作和访问与 Python 解释器交互的函数。
+
+2.import logging：导入 Python 标准库中的 logging 模块，用于记录日志。
+
+3.from logging.handlers import RotatingFileHandler：从 logging.handlers 模块中导入 RotatingFileHandler 类，用于实现日志的轮转记录。
+
+4.def init_logger(file_name="running.log",logger_name="my_logger",log_level=logging.INFO,stdout=False):：定义了一个名为 init_logger 的函数，用于初始化日志记录器。函数接受四个参数，分别是日志文件名、日志记录器名称、日志级别和是否输出到标准输出。
+
+5.logger = logging.getLogger(logger_name)：获取一个日志记录器实例，传入的 logger_name 参数作为记录器的名称。如果传入的名称不存在，则会创建一个新的记录器。
+
+6.logger.setLevel(log_level)：设置日志记录器的级别为传入的 log_level 参数，表示只记录大于等于该级别的日志消息。
+
+7.log_format = '%(asctime)s - %(levelname)s - %(message)s'：定义日志消息的格式，包括时间、日志级别和消息内容。
+
+8.formatter = logging.Formatter(log_format)：创建一个 Formatter 对象，使用上一步定义的日志格式。
+
+9.handler = RotatingFileHandler(file_name,maxBytes=10 * 1024 * 1024,backupCount=10)：创建一个 RotatingFileHandler 对象，用于将日志写入文件。其中，file_name 参数表示日志文件名，maxBytes 参数表示单个日志文件的最大字节数，backupCount 参数表示保留的日志文件个数。
+
+10.handler.setFormatter(formatter)：设置 RotatingFileHandler 对象的 Formatter 为上一步创建的格式化对象。
+
+11.logger.addHandler(handler)：将 RotatingFileHandler 对象添加到日志记录器中，表示日志消息将输出到文件中。
+
+12.if stdout:：如果参数 stdout 为 True，则执行下面的代码块。
+
+13.stream_handler = logging.StreamHandler(sys.stdout)：创建一个 StreamHandler 对象，表示将日志消息输出到标准输出（控制台）。
+
+14.stream_handler.setFormatter(formatter)：设置 StreamHandler 对象的 Formatter 为上一步创建的格式化对象。
+
+15.logger.addHandler(stream_handler)：将 StreamHandler 对象添加到日志记录器中，表示日志消息也会输出到标准输出。
+
+16.return logger：返回初始化好的日志记录器实例。

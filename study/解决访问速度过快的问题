@@ -1,0 +1,34 @@
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_random_exponential,
+)  # for exponential backoff
+
+@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
+def completion_with_backoff(**kwargs):
+    return client.chat.completions.create(**kwargs)
+
+
+completion_with_backoff(model="gpt-3.5-turbo", messages=[{"role": "user", "content": "Once upon a time,"}])
+
+
+/*
+使用指数退避重试
+避免速率限制错误的一种简单方法是使用随机指数退避自动重试请求。使用指数退避重试意味着在遇到速率限制错误时执行短暂睡眠，然后重试不成功的请求。如果请求仍然不成功，则增加睡眠长度并重复该过程。这将持续到请求成功或达到最大重试次数为止。
+
+这种方法有很多好处：
+
+自动重试意味着您可以从速率限制错误中恢复，而不会崩溃或丢失数据
+指数退避意味着您可以快速尝试第一次重试，同时如果前几次重试失败，仍然可以从更长的延迟中受益
+在延迟中添加随机抖动有助于同时重试所有命中
+请注意，不成功的请求会影响您的每分钟限制，因此连续重新发送请求将不起作用。
+
+以下是一些示例解决方案。
+
+示例#1：使用 Tenacity 库
+Tenacity是一个 Apache 2.0 许可的通用重试库，用 Python 编写，用于简化向任何事物添加重试行为的任务。
+
+要为您的请求添加指数退避，您可以使用tenacity.retry 装饰器。
+
+*/
+

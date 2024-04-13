@@ -1,4 +1,4 @@
-from image.img_generator import get_requirement, generate_img
+from study.image.img_generator import get_requirement, generate_img
 
 if __name__ == '__main__':
     while True:

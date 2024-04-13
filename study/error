@@ -1,0 +1,1 @@
+Error code: 429 - {'error': {'message': 'max request per minute reached: 3, please try again after 1 seconds', 'type': 'rate_limit_reached_error'}}
