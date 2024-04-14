@@ -29,10 +29,8 @@ def ask_question(messages, temperature=0.7):
     try:
         # 发送请求并获取响应
         response = completions_with_backoff(model=model, messages=messages, temperature=temperature)
-
         # 获取回答
-        ai_response = response.choices[0].message.content
-        ai_response = CodeToHtml(ai_response)
+        ai_response = CodeToHtml(response.choices[0].message.content)
 
         # 返回AI的回答
         return ai_response
@@ -58,10 +56,9 @@ def ask():
         ]
 
         # 获取AI的回答
-        ai_response = ask_question(messages)
-        ai_response = markdown.markdown(ai_response)
+        ai_response = markdown.markdown(ask_question(messages))
+
         # 返回AI的回答
-        print(ai_response)
         return jsonify({'ai_response': ai_response})
 
     except Exception as e:

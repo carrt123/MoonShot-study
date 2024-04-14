@@ -81,8 +81,6 @@
                         message = message.replace(/&lt;pre&gt;&lt;code&gt;/g, '&lt;pre&gt;&lt;code class="hljs"&gt;');
                         $('#response-container').append(message);
 
-
-
                     },
                     error: function(request, status, error) {
                         alert("无法获取AI回答，请检查网络连接或稍后重试。");
@@ -95,11 +93,3 @@
 </html>
 
 
-<!--                    success: function(data) {-->
-<!--                        var question = '<div class="question ai"><strong>User:</strong>'</div>-->
-<!--                        $('#ask-container').append(userInput);-->
-
-<!--                        var message = '<div class="message ai"><strong>AI:</strong> ' + data.ai_response + '</div>';-->
-<!--                        $('#response-container').append(message);-->
-<!--                        $('#user-input').val('');-->
-<!--                    },-->
